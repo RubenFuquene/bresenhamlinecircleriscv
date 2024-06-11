@@ -56,5 +56,3 @@ check_end:
 	lw ra, 12(sp)        # Restaurar ra desde la pila
     addi sp, sp, 16      # Liberar espacio en la pila
     ret
-
-	.include "plot_pixel.asm"

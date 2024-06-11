@@ -6,6 +6,11 @@
 # Color del pixel
 px_rgb: .word 0x0000ff  # Color amarillo
 
+newline: .string "\n"
+comma: .string ", "
+x_label: .string "x: "
+y_label: .string " y: "
+
     .text
 
 plot_pixel:
@@ -30,4 +35,35 @@ pintarPixel:
 	slli s6, s6, 2   # 4 bytes por pixel		
 	add	s6, s6, s4  # Display
 	sw	a2, 0(s6) # Color
+	
+	# Imprimir "x: "
+    la a0, x_label
+    li a7, 4       # syscall para print_string
+    ecall
+
+    # Imprimir x1 (t0)
+    mv a0, t0
+    li a7, 1       # syscall para print_int
+    ecall
+
+    # Imprimir ", "
+    la a0, comma
+    li a7, 4       # syscall para print_string
+    ecall
+
+    # Imprimir "y: "
+    la a0, y_label
+    li a7, 4       # syscall para print_string
+    ecall
+
+    # Imprimir y1 (t1)
+    mv a0, t1
+    li a7, 1       # syscall para print_int
+    ecall
+
+    # Imprimir nueva línea
+    la a0, newline
+    li a7, 4       # syscall para print_string
+    ecall
+
 	ret
