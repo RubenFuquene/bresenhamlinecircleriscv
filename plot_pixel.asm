@@ -1,5 +1,5 @@
 	.eqv RES_H 512
-	.eqv RES_V 512
+	.eqv RES_V 256
 	.eqv DISPLAY 0x10040000  # Posicion de memoria donde inicia la visualizacion bitmap
     
 	.data
