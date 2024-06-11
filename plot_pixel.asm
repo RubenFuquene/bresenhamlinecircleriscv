@@ -16,7 +16,6 @@ y_label: .string " y: "
 plot_pixel:
     # Info de la pantalla
 	li	s2, RES_H
-	li	s3, RES_V
 	li	s4, DISPLAY
 	
 	# mover la información de la posición x e y a los registros correspondientes
