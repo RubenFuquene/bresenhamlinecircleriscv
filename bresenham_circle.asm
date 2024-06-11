@@ -83,7 +83,7 @@ circle_loop:
     
 adjust_y:
 	li a3, ONE
-    sub s1, s1, a2          # y -= 1
+    sub s1, s1, a3          # y -= 1
     
     sub s3, s0, s1			# p = x - y
    	li a3, FOUR
@@ -108,6 +108,46 @@ continue_loop:
     j circle_loop
 
 circle_end:
+
+	# plot(xc + x, yc + y)
+    add t0, t4, s0          # xc + x
+    add t1, t5, s1          # yc + y
+    jal plot_pixel
+
+    # plot(xc - x, yc + y)
+    sub t0, t4, s0          # xc - x
+    add t1, t5, s1          # yc + y
+    jal plot_pixel
+
+    # plot(xc + x, yc - y)
+    add t0, t4, s0          # xc + x 
+    sub t1, t5, s1          # yc - y
+    jal plot_pixel
+
+    # plot(xc - x, yc - y)
+    sub t0, t4, s0          # xc - x
+    sub t1, t5, s1          # yc - y
+    jal plot_pixel
+
+    # plot(xc + y, yc + x)
+    add t0, t4, s1          # xc + y
+    add t1, t5, s0          # yc + x
+    jal plot_pixel
+
+    # plot(xc - y, yc + x)
+    sub t0, t4, s1          # xc - y
+    add t1, t5, s0          # yc + x
+    jal plot_pixel
+
+    # plot(xc + y, yc - x)
+    add t0, t4, s1          # xc + y
+    sub t1, t5, s0          # yc - x
+    jal plot_pixel
+
+    # plot(xc - y, yc - x)
+    sub t0, t4, s1          # xc - y
+    sub t1, t5, s0          # yc - x
+    jal plot_pixel
 
 	lw ra, 12(sp)        # Restaurar ra desde la pila
     addi sp, sp, 16      # Liberar espacio en la pila
